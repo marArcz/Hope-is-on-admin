@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/Hope-is-on-admin/static/css/main.c9434d17.css",
+    "main.js": "/Hope-is-on-admin/static/js/main.81348f88.js",
+    "static/js/787.aa724677.chunk.js": "/Hope-is-on-admin/static/js/787.aa724677.chunk.js",
+    "static/media/dog.jpg": "/Hope-is-on-admin/static/media/dog.37bc058159720b1f8762.jpg",
+    "static/media/Frame 1Logo.png": "/Hope-is-on-admin/static/media/Frame 1Logo.cea8630d001419cf3a17.png",
+    "static/media/profile_user.jpg": "/Hope-is-on-admin/static/media/profile_user.f92e5ecc7edfd2ea035e.jpg",
+    "index.html": "/Hope-is-on-admin/index.html",
+    "main.c9434d17.css.map": "/Hope-is-on-admin/static/css/main.c9434d17.css.map",
+    "main.81348f88.js.map": "/Hope-is-on-admin/static/js/main.81348f88.js.map",
+    "787.aa724677.chunk.js.map": "/Hope-is-on-admin/static/js/787.aa724677.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c9434d17.css",
+    "static/js/main.81348f88.js"
+  ]
+}
