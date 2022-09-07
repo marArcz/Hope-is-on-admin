@@ -8,7 +8,6 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap");
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -4445,7 +4444,7 @@ textarea.form-control-lg {
   --bs-breadcrumb-margin-bottom: 1rem;
   --bs-breadcrumb-bg: ;
   --bs-breadcrumb-border-radius: ;
-  --bs-breadcrumb-divider-color: #6554c0;
+  --bs-breadcrumb-divider-color: #6c757d;
   --bs-breadcrumb-item-padding-x: 0.5rem;
   --bs-breadcrumb-item-active-color: #6c757d;
   display: flex;
@@ -4465,7 +4464,7 @@ textarea.form-control-lg {
   float: left;
   padding-right: var(--bs-breadcrumb-item-padding-x);
   color: var(--bs-breadcrumb-divider-color);
-  content: var(--bs-breadcrumb-divider, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3e%3cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236554c0'/%3e%3c/svg%3e")) /* rtl: var(--bs-breadcrumb-divider, url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3e%3cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236554c0'/%3e%3c/svg%3e")) */;
+  content: var(--bs-breadcrumb-divider, "/") /* rtl: var(--bs-breadcrumb-divider, "/") */;
 }
 .breadcrumb-item.active {
   color: var(--bs-breadcrumb-item-active-color);
@@ -10753,119 +10752,4 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}
-body {
-  overflow-x: hidden;
-}
-
-* {
-  font-family: "Inter", sans-serif;
-}
-
-.f-inter {
-  font-family: "Inter", sans-serif;
-}
-
-.max-h {
-  min-height: 100vh;
-}
-
-.full-h {
-  height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.sign-btn-group {
-  transition: all 0.3s;
-  width: 60px;
-  padding: 10px;
-  height: 60px;
-  border-radius: 0 0 50% 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.sign-btn-group button {
-  background: transparent;
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-.sign-btn-group button span {
-  transition: all 0.5s;
-  width: 0;
-  overflow: hidden;
-}
-.sign-btn-group:hover {
-  width: 180px;
-}
-.sign-btn-group:hover button span {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-}
-
-.sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 200px;
-  padding: 10px 10px;
-  z-index: 100;
-}
-.sidebar .nav-item {
-  margin-bottom: 15px;
-  box-sizing: border-box;
-  padding: 0 5px;
-}
-.sidebar .nav-item .nav-link.active {
-  color: #36b37e;
-  transition: all 0.3s;
-}
-.sidebar .nav-item .nav-link {
-  color: grey;
-  font-weight: 500;
-  border-radius: 5px;
-}
-.sidebar .nav-item .nav-link:not(.active):hover {
-  background: rgba(200, 200, 200, 0.2);
-}
-
-.navbar-main {
-  z-index: 99;
-}
-
-main.home {
-  margin-left: 200px;
-  padding-top: 50px;
-}
-
-.navbar-main {
-  margin-left: 200px;
-}
-
-.user-photo {
-  max-width: 100%;
-  width: 60px;
-  height: 60px;
-  margin: auto;
-  border: 1px solid grey;
-  border-radius: 50%;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.search-input-group {
-  position: relative;
-}
-.search-input-group .search-icon {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-.search-input-group input {
-  padding-left: 30px;
-}/*# sourceMappingURL=App.css.map */
+}/*# sourceMappingURL=custom.css.map */

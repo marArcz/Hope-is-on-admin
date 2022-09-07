@@ -1,0 +1,18 @@
+/* The following block can be included in a custom.scss */
+
+/* make the customizations */
+
+
+$theme-colors: (
+    "warning":#FBC02D,
+    "secondary":#334444,
+    "success":#36B37E,
+    "purple":#6554C0,
+    "poppy":#FF5630,
+    "gray":#6c757d
+);
+
+
+
+/* import bootstrap to set changes */
+@import "../../node_modules/bootstrap/scss/bootstrap";
