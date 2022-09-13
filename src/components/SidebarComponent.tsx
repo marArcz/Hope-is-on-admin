@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import LogoComponent from "./LogoComponent";
 import ProfilePic from "../images/profile_user.jpg";
 import { Link } from "react-router-dom";
 import { MenuItem } from "../Models/TypeModels";
+import DropdownMenuBtn from "./DropdownMenuBtn";
+import { Collapse } from "react-bootstrap";
+import MenuBtn from "./MenuBtn";
 type Props = {
   sidebarMenus: MenuItem[];
   activeKey: string;
   onItemSelect: (key: string) => void;
 };
 
+
 const SidebarComponent = ({ sidebarMenus, activeKey, onItemSelect }: Props) => {
+  const [isPetExpanded, setIsPetExpanded] = useState(false)
+
   return (
     <div className="bg-white sidebar bg-gradient shadow">
       <header className=" text-center text-light">
@@ -39,6 +45,14 @@ const SidebarComponent = ({ sidebarMenus, activeKey, onItemSelect }: Props) => {
               </Nav.Link>
             </Nav.Item>
           ))}
+        {/* <Nav.Item className="">
+          <DropdownMenuBtn to="/success/pets" icon="pets" label="Pets" expanded={isPetExpanded} onClick={() => setIsPetExpanded(!isPetExpanded)} />
+          <Collapse in={isPetExpanded}>
+            <Nav.Item>
+              <MenuBtn to="/success/pets/add" icon="add" label="Add Pet" />
+            </Nav.Item>
+          </Collapse>
+        </Nav.Item> */}
       </Nav>
     </div>
   );

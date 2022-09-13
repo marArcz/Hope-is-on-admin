@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Col, Container, Offcanvas, Row } from "react-bootstrap";
 import HeaderComponent from "./HeaderComponent";
 import LogoComponent from "./LogoComponent";
 import SidebarComponent from "./SidebarComponent";
@@ -9,18 +9,24 @@ import BreadCrumbComponent from "./BreadCrumbComponent";
 import { Route, Routes } from "react-router-dom";
 import DashboardComponent from "./DashboardComponent";
 import PetsPage from "./PetsPage";
-import { MenuItem } from "../Models/TypeModels";
+import sidebarMenus from './SideBarMenuItems';
+import { PetModel } from "../Models/TypeModels";
+import axios from 'axios';
 
 type Props = {};
 
 const HomePage = (props: Props) => {
   const [activeKey, setActiveKey] = useState<string>("/success");
+  const [petList, setPetList] = useState([]);
 
-  const sidebarMenus: MenuItem[] = [
-    { to: "/success", icon: "home", label: "Home" },
-    { to: "/success/pets", icon: "pets", label: "Pets" },
-    { to: "/success/adopters", icon: "groups", label: "adopters" },
-  ];
+  useEffect(() => {
+    axios.get<Array<PetModel>>("/pets")
+    .then((res:any)=>{
+      setPetList(res);
+      console.log("pets: ", petList)
+    })
+  }, [])
+
 
   return (
     <>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image } from 'react-bootstrap'
-import Logo from '../images/Frame 1Logo.png';
+import Logo from '../images/logo.png';
 
 type Props = {}
 
@@ -8,7 +8,7 @@ const LogoComponent = (props: Props) => {
     return (
         <div className="text-center ">
             <div className="text-start">
-                <h2 className='text-start text-success'>Hope Is On</h2>
+                <h5 className='text-start text-uppercase text-success'>Gods Home of Refuge</h5>
                 <h6 className="my-2 text-secondary">Animal Pet Adoption</h6>
             </div>
             <Image src={Logo} fluid />
