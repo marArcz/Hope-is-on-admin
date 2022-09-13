@@ -1,12 +1,20 @@
-import React from "react";
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Button, Card, Col, Form, Row, Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import DogImage from '../images/dog.jpg'
+import { CategoryModel, PetModel } from "../Models/TypeModels";
+import AddCategoryModal from "./AddCategoryModal";
+import AddPetModal from "./AddPetModal";
 import PetComponent from "./PetsComponents/PetComponent";
-type Props = {};
+type Props = {
+  petList:PetModel[] | [],
+  categories:CategoryModel[] | []
+};
 
 const PetsPage = (props: Props) => {
-  const petsArray = Array(20);
-  petsArray.fill("pet", 0, 20);
+
+
   return (
     <div className="pt-2">
       <h4 className="mb-3 text-success">
@@ -16,7 +24,7 @@ const PetsPage = (props: Props) => {
       <div className="d-flex">
         <Form.Check type={"checkbox"} id="select-all" label="SELECT ALL" />
         <div className="ms-auto">
-          <button className="btn btn-poppy text-light" type="button">Add New</button>
+          <Link to="/success/pets/add" className="btn btn-poppy text-light" type="button">Add New</Link>
         </div>
       </div>
       <div className="mb-2">
@@ -28,20 +36,29 @@ const PetsPage = (props: Props) => {
                 className="border- bg-white text-gray"
                 placeholder="Search pet to manage"
                 type="text"
-
               />
             </div>
           </Col>
         </Row>
       </div>
       <div className="pets-container">
-        <Row lg={4} className="gy-3 mt-3">
-          {petsArray.map((pet, index) => (
-            <Col key={index}>
-              <PetComponent image={DogImage} name="Sola" description="Cute dog" age="2 months old" address="" gender="Male" />
-            </Col>
-          ))}
-        </Row>
+        {props.petList ? (
+          <Row lg={3} xl={4} md={2} className="gy-3 mt-3">
+            {props.petList.map((pet: PetModel, index) => (
+              <Col key={index}>
+                <PetComponent photo={pet.photos[0]} name={pet.name} description={pet.description} age={pet.age} address={pet.address} gender={pet.gender} />
+              </Col>
+            ))
+            }
+          </Row>
+        ) : (
+          <div className="text-center">
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        )}
+
       </div>
     </div>
   );

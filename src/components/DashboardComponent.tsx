@@ -41,12 +41,12 @@ const DashboardComponent = (props: Props) => {
   };
 
   return (
-    <div>
+    <div className="pt-2">
       <h3 className="mb-2 text-dark">Welcome Back!</h3>
       <BreadCrumbComponent />
       {/* <hr className=" text-success" /> */}
       <Row className="h-100">
-        <Col md={7} className="">
+        <Col lg={7} className="">
           <div className="card bg-white border-0 rounded-0">
             <div className="card-body">
               <p className="text-black-50">Statistics</p>
@@ -70,7 +70,7 @@ const DashboardComponent = (props: Props) => {
             </div>
           </div>
         </Col>
-        <Col className="">
+        <Col lg className="">
           <Row className="justify-content-center align-items-center h-100">
             <Col md={6}>
               <LogoComponent />
