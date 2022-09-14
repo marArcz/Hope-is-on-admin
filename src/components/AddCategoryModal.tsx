@@ -41,7 +41,7 @@ const AddCategoryModal = ({ show, handleClose, onSuccess }: Props) => {
                     <Modal.Title as={"h5"}>Add New Type</Modal.Title>
                 </Modal.Header>
                 <Form onSubmit={onFormSubmit}>
-
+        
                     <Modal.Body>
                         <div className="mb-3">
                             <Form.Label>Type of pet:</Form.Label>
@@ -53,7 +53,7 @@ const AddCategoryModal = ({ show, handleClose, onSuccess }: Props) => {
                             Close
                         </Button>
                         <Button type='submit' variant="success" className={`${backdrop ? "disabled" : ""}`} onClick={handleClose}>
-                            {backdrop ? "Please wait..." : "Save Changes"}
+                            {backdrop ? "Please wait..." : "Submit"}
                         </Button>
                     </Modal.Footer>
                 </Form>

@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Form, Row } from 'react-bootstrap'
-import { BreedModel, CategoryModel } from '../Models/TypeModels';
+import BackendAPI from '../backendApi/BackendAPI';
+import { BreedModel, CategoryModel, VaccineModel } from '../Models/TypeModels';
+import AddBreedModal from './AddBreedModal';
 import AddCategoryModal from './AddCategoryModal';
-
+import Select from 'react-select'
 type Props = {}
 
 const AddPetPage = (props: Props) => {
@@ -16,9 +18,11 @@ const AddPetPage = (props: Props) => {
   const [categories, setCategories] = useState<CategoryModel[] | []>([])
   const [showAddCategory, setShowAddCategory] = useState(false)
   const [showAddBreed, setShowAddBreed] = useState(false)
-  const [breedId, setBreedId] = useState<any | number>("");
+  const [breedIds, setBreedIds] = useState<[]>([]);
   const [images, setImages] = useState<any>([])
   const [breeds, setBreeds] = useState<BreedModel[] | []>([])
+  const [vaccines, setVaccines] = useState<VaccineModel[]>([])
+  const [breedOptionList, setBreedOptionList] = useState([])
 
   const loadCategories = () => {
     axios.get<Array<CategoryModel>>("/categories")
@@ -29,12 +33,33 @@ const AddPetPage = (props: Props) => {
   const loadBreeds = () => {
     if (categoryId !== "") {
       axios.get<Array<BreedModel>>(`/breeds/${categoryId}/getAll`)
-      .then((res:any)=>{
-        setBreeds(res.data)
-      })
+        .then((res: any) => {
+          setBreeds(res.data)
+        })
     }
   }
-  
+
+  const loadVaccines = async () => {
+    if (categoryId !== "") {
+      let vaccines = await BackendAPI.vaccines.getAll(categoryId);
+      setVaccines(vaccines)
+    }
+
+  }
+
+  useEffect(() => {
+    let list:any= breeds.map((breed, i) => {
+      return {
+        value: breed.id,
+        label: breed.name
+      }
+    })
+
+    setBreedOptionList(list)
+  }, [breeds])
+
+
+
   useEffect(() => {
     loadBreeds()
   }, [categoryId])
@@ -85,13 +110,20 @@ const AddPetPage = (props: Props) => {
     if (val === "add") {
       setShowAddBreed(true)
     } else {
-      setCategoryId(Number.parseInt(val));
+      // setBreedId(Number.parseInt(val));
     }
   }
   const onNewCategoryAdded = (categoryId: number | any) => {
     loadCategories();
     setCategoryId(categoryId)
     console.log("new added: ", categoryId)
+  }
+
+  const onNewBreedAdded = (breedId: any) => {
+    loadBreeds();
+    setShowAddBreed(false)
+    // setBreedId(breedId)
+
   }
   const onFileSelect = (e: any) => {
     let files = e.target.files
@@ -113,8 +145,12 @@ const AddPetPage = (props: Props) => {
   }
   const onFormSubmit = (e: any) => {
     e.preventDefault();
-
-
+    axios.post("/pets/insert", {
+      name,
+      description,
+      age,
+      gender
+    })
   }
 
   return (
@@ -123,6 +159,12 @@ const AddPetPage = (props: Props) => {
         Add New Pet
       </h5>
       <hr />
+      <div className="">
+        <p>Breeds:</p>
+        {breedIds && breedIds.map((id:number,i:number)=>(
+          <p key={i}>{id}</p>
+        ))}
+      </div>
       <p className='fw-bold'>Pet Details</p>
       <Row >
         <Col md={6}>
@@ -161,9 +203,62 @@ const AddPetPage = (props: Props) => {
             </div>
             <div className="mb-3">
               <Form.Label>Breed:</Form.Label>
-              <Form.Select required onChange={onCategorySelect} value={categoryId}>
+              {/* <Form.Select disabled={categoryId === ""} required onChange={onBreedSelect} value={breedId}>
                 <BreedOptions />
-              </Form.Select>
+              </Form.Select> */}
+
+              <Select options={breedOptionList} isMulti={true} value={breedIds} onChange={(items) => console.log(items)}/>
+
+            </div>
+            <div className="mb-3">
+              <Form.Label>Vaccines</Form.Label>
+              <Card className='shadow-sm'>
+                <Card.Body>
+                  <Row>
+                    {
+                      images && images.map((img: any, index: number) => (
+                        <Col md={3} key={index} draggable>
+                          <Card className='position-relative'>
+                            <div className="text-end mb-2">
+                              <Button type="button" onClick={() => removeImage(index)} variant="secondary" className='p-1 py-0 rounded-0 position-absolute end-0 top-0 bg-opacity-25'><i className='m-0 bx bx-x'></i></Button>
+                            </div>
+                            <Card.Img variant="top" src={URL.createObjectURL(img)} />
+                          </Card>
+                        </Col>
+                      ))
+                    }
+                  </Row>
+                  <hr />
+
+                  <Form.Control type='file' className='d-none' accept='image/*' multiple onChange={onFileSelect} id='file-select' />
+                  <Form.Label htmlFor='file-select' className='m-0 btn btn-secondary btn-sm'>Add Image</Form.Label>
+
+                </Card.Body>
+              </Card>
+            </div>
+            <div className="mb-3">
+              <Form.Label>Pet Photos</Form.Label>
+              <Card className='shadow-sm'>
+                <Card.Body>
+                  <Form.Control type='file' className='d-none' accept='image/*' multiple onChange={onFileSelect} id='file-select' />
+                  <Form.Label htmlFor='file-select' className='m-0 btn btn-secondary btn-sm'>Add Image</Form.Label>
+                  <hr />
+                  <Row>
+                    {
+                      images && images.map((img: any, index: number) => (
+                        <Col md={3} key={index} draggable>
+                          <Card className='position-relative'>
+                            <div className="text-end mb-2">
+                              <Button type="button" onClick={() => removeImage(index)} variant="secondary" className='p-1 py-0 rounded-0 position-absolute end-0 top-0 bg-opacity-25'><i className='m-0 bx bx-x'></i></Button>
+                            </div>
+                            <Card.Img variant="top" src={URL.createObjectURL(img)} />
+                          </Card>
+                        </Col>
+                      ))
+                    }
+                  </Row>
+                </Card.Body>
+              </Card>
             </div>
             <div className="mb-3">
               <Form.Label>Pet Photos</Form.Label>
@@ -196,6 +291,7 @@ const AddPetPage = (props: Props) => {
         </Col>
       </Row>
       <AddCategoryModal show={showAddCategory} handleClose={() => setShowAddCategory(false)} onSuccess={onNewCategoryAdded} />
+      <AddBreedModal categoryId={categoryId} categories={categories} show={showAddBreed} handleClose={() => setShowAddBreed(false)} onSuccess={onNewBreedAdded} />
     </div>
   )
 }

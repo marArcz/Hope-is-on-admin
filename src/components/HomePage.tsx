@@ -14,6 +14,7 @@ import { CategoryModel, PetModel } from "../Models/TypeModels";
 import axios from 'axios';
 import AddPetPage from "./AddPetPage";
 import { ToastContainer, toast } from 'react-toastify';
+import BackendAPI from "../backendApi/BackendAPI";
 
 type Props = {};
 
@@ -21,7 +22,7 @@ const HomePage = (props: Props) => {
   const [activeKey, setActiveKey] = useState<string>("/success");
   const location = useLocation();
   const [categories, setCategories] = useState([])
-  const [petList, setPetList] = useState([])
+  const [petList, setPetList] = useState<any>([])
   const loadCategories = (selected: undefined | string = undefined) => { 
     axios.get<Array<CategoryModel>>("/categories")
       .then((res: any) => {
@@ -30,13 +31,14 @@ const HomePage = (props: Props) => {
         console.log(res)
       })
   }
-  const loadPets = () => {
-    axios.get<Array<PetModel>>("/pets")
-      .then((res: any) => {
-        setPetList(res.data);
-        console.log("pets: ", res.data)
-      })
-
+  const loadPets = async() => {
+    // axios.get<Array<PetModel>>("/pets")
+    //   .then((res: any) => {
+    //     setPetList(res.data);
+    //     console.log("pets: ", res.data)
+    //   })
+    let pets = await BackendAPI.pets.getAll()
+    setPetList(pets)
   }
   useEffect(() => {
     loadPets()

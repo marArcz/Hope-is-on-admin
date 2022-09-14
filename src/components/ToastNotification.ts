@@ -19,7 +19,7 @@ export const showErrorToast = (message: string) => {
         autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: true,
-        pauseOnHover: true,
+        pauseOnHover: false,
         icon: false,
         draggable: true,
         progress: undefined,

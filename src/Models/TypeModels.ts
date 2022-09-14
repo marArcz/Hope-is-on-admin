@@ -28,3 +28,8 @@ export type PetModel = {
   category:CategoryModel
 }
 
+export type VaccineModel = {
+  id:number,
+  name:string,
+  category:CategoryModel,
+}
