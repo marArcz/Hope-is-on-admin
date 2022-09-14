@@ -1,5 +1,5 @@
 import { PetModel } from './../../Models/TypeModels';
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 
 type PetParam = {
     photos: [];
@@ -8,13 +8,13 @@ type PetParam = {
     age: string;
     address: string;
     gender: string;
-    categoryId:number,
-    breedId:number,
-    vaccines:[]
+    categoryId: number,
+    breedIds: number[],
+    vaccineIds: number[]
 }
 
 const Pets = {
-    error:{},
+    error: {},
     getAll: async (categoryId: number | undefined = undefined): Promise<Array<PetModel>> => {
         var pets: PetModel[];
         if (categoryId) {
@@ -25,22 +25,34 @@ const Pets = {
             return pets
         }
     },
-    insert: async ({name,age,description,gender,address,categoryId,breedId,vaccines,photos}:PetParam):Promise<Boolean> =>{
-        return axios.post("/pets/insert",{
-            name,
-            age,
-            description,
-            address,
-            gender,
-            categoryId,
-            breedId,
-            vaccines,
-            photos
-        }).then(res => true)
-        .catch(res => {
-            Pets.error = res
-            return false
-        })
+    insert: async ({ name, age, description, gender, address, categoryId, breedIds, vaccineIds, photos }: PetParam): Promise<AxiosResponse | AxiosError> => {
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+        console.log("breedIds: ", breedIds)
+        console.log("vaccineIds: ", vaccineIds)
+        var formData = new FormData();
+        formData.append("name", name)
+        formData.append("age", age)
+        formData.append("description", description)
+        formData.append("gender", gender)
+        formData.append("address", address)
+        formData.append("categoryId", categoryId.toString())
+        for (let breedId of breedIds) {
+            formData.append("breedId[]", breedId.toString())
+        }
+        for (let vaccineId of vaccineIds) {
+            formData.append("vaccineId[]", vaccineId.toString())
+        }
+        for (let photo of photos) {
+            formData.append("photo[]", photo)
+        }
+
+        return axios.post("/pets/insert", formData, config)
+            .then(res => res)
+            .catch(err => err)
     }
 }
 
