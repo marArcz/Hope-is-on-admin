@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/Hope-is-on-admin/static/css/main.c9434d17.css",
-    "main.js": "/Hope-is-on-admin/static/js/main.81348f88.js",
-    "static/js/787.aa724677.chunk.js": "/Hope-is-on-admin/static/js/787.aa724677.chunk.js",
-    "static/media/dog.jpg": "/Hope-is-on-admin/static/media/dog.37bc058159720b1f8762.jpg",
-    "static/media/Frame 1Logo.png": "/Hope-is-on-admin/static/media/Frame 1Logo.cea8630d001419cf3a17.png",
-    "static/media/profile_user.jpg": "/Hope-is-on-admin/static/media/profile_user.f92e5ecc7edfd2ea035e.jpg",
-    "index.html": "/Hope-is-on-admin/index.html",
-    "main.c9434d17.css.map": "/Hope-is-on-admin/static/css/main.c9434d17.css.map",
-    "main.81348f88.js.map": "/Hope-is-on-admin/static/js/main.81348f88.js.map",
-    "787.aa724677.chunk.js.map": "/Hope-is-on-admin/static/js/787.aa724677.chunk.js.map"
+    "main.css": "/admin/static/css/main.1a3d0581.css",
+    "main.js": "/admin/static/js/main.d1fec446.js",
+    "static/js/787.bb2c0cda.chunk.js": "/admin/static/js/787.bb2c0cda.chunk.js",
+    "static/media/logo.png": "/admin/static/media/logo.42e42fbe0557ed0176ab.png",
+    "static/media/profile_user.jpg": "/admin/static/media/profile_user.f92e5ecc7edfd2ea035e.jpg",
+    "static/media/profile.jpg": "/admin/static/media/profile.5edf0c2bafee92924250.jpg",
+    "index.html": "/admin/index.html",
+    "main.1a3d0581.css.map": "/admin/static/css/main.1a3d0581.css.map",
+    "main.d1fec446.js.map": "/admin/static/js/main.d1fec446.js.map",
+    "787.bb2c0cda.chunk.js.map": "/admin/static/js/787.bb2c0cda.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c9434d17.css",
-    "static/js/main.81348f88.js"
+    "static/css/main.1a3d0581.css",
+    "static/js/main.d1fec446.js"
   ]
 }
