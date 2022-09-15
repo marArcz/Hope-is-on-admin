@@ -8,7 +8,7 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400&display=swap");
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -10976,5 +10976,210 @@ main.home {
   .full-h {
     height: unset !important;
     min-height: 100vh !important;
+  }
+}
+.preloader-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: rgba(240, 240, 240, 0.3);
+  top: 0;
+  left: 0;
+  text-align: center;
+  z-index: 9999;
+  display: none;
+  -webkit-animation: 300ms fade-in ease-in 1;
+          animation: 300ms fade-in ease-in 1;
+}
+.preloader-wrapper.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.preloader-wrapper .content p {
+  padding: 7px 13px;
+  color: #334444;
+  text-align: center;
+  text-transform: capitalize;
+}
+.preloader-wrapper .content .preloader span {
+  position: relative;
+}
+.preloader-wrapper .content .preloader span::before {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  position: relative;
+  display: block;
+  margin: auto;
+  background: #36b37e;
+  -webkit-animation: 1.5s spin-shrink ease-out infinite;
+          animation: 1.5s spin-shrink ease-out infinite;
+}
+.preloader-wrapper .content .preloader span::after {
+  content: "";
+  width: 45px;
+  height: 5px;
+  border-radius: 50%;
+  position: relative;
+  display: block;
+  margin: 40px auto 5px;
+  background: rgb(175, 175, 175);
+  -webkit-animation: 1.5s fade-shrink ease-out infinite;
+          animation: 1.5s fade-shrink ease-out infinite;
+}
+
+@-webkit-keyframes spin-shrink {
+  10% {
+    transform: rotate(80deg);
+  }
+  30% {
+    transform: rotate(110deg);
+  }
+  50% {
+    transform: rotate(130deg);
+  }
+  60% {
+    transform: rotate(150deg);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+  }
+  65% {
+    transform: rotate(170deg);
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+  }
+  70% {
+    transform: rotate(190deg);
+    border-radius: 5px;
+    height: 40px;
+    width: 40px;
+  }
+  90% {
+    transform: rotate(210deg);
+    border-radius: 5px;
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@keyframes spin-shrink {
+  10% {
+    transform: rotate(80deg);
+  }
+  30% {
+    transform: rotate(110deg);
+  }
+  50% {
+    transform: rotate(130deg);
+  }
+  60% {
+    transform: rotate(150deg);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+  }
+  65% {
+    transform: rotate(170deg);
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+  }
+  70% {
+    transform: rotate(190deg);
+    border-radius: 5px;
+    height: 40px;
+    width: 40px;
+  }
+  90% {
+    transform: rotate(210deg);
+    border-radius: 5px;
+    height: 40px;
+    width: 40px;
+  }
+}
+@-webkit-keyframes fade-shrink {
+  10% {
+    background: rgb(200, 200, 200);
+  }
+  30% {
+    background: rgba(200, 200, 200, 0.8);
+  }
+  50% {
+    background: rgba(200, 200, 200, 0.7);
+  }
+  60% {
+    background: rgba(175, 175, 175, 0.8);
+    width: 25px;
+  }
+  65% {
+    background: rgba(175, 175, 175, 0.8);
+    width: 25px;
+  }
+  70% {
+    background: rgb(200, 200, 200);
+    width: 25px;
+  }
+  80% {
+    width: 25px;
+  }
+  90% {
+    background: rgb(175, 175, 175);
+    width: 25px;
+  }
+  100% {
+    width: 35px;
+  }
+}
+@keyframes fade-shrink {
+  10% {
+    background: rgb(200, 200, 200);
+  }
+  30% {
+    background: rgba(200, 200, 200, 0.8);
+  }
+  50% {
+    background: rgba(200, 200, 200, 0.7);
+  }
+  60% {
+    background: rgba(175, 175, 175, 0.8);
+    width: 25px;
+  }
+  65% {
+    background: rgba(175, 175, 175, 0.8);
+    width: 25px;
+  }
+  70% {
+    background: rgb(200, 200, 200);
+    width: 25px;
+  }
+  80% {
+    width: 25px;
+  }
+  90% {
+    background: rgb(175, 175, 175);
+    width: 25px;
+  }
+  100% {
+    width: 35px;
+  }
+}
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
   }
 }/*# sourceMappingURL=App.css.map */

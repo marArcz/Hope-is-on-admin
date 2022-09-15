@@ -1,5 +1,5 @@
 {
-  "name": "hope-is-on-admin",
+  "name": "God's Home Of Refuge Admin",
   "homepage": "http://mararcz.github.io/Hope-is-on-admin",
   "version": "0.1.0",
   "private": true,
@@ -19,6 +19,7 @@
     "react-bootstrap": "^2.5.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
+    "react-preloaders": "^3.0.3",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.4.0",

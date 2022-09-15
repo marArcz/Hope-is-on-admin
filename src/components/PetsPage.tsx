@@ -7,16 +7,19 @@ import { CategoryModel, PetModel } from "../Models/TypeModels";
 import AddCategoryModal from "./AddCategoryModal";
 import AddPetModal from "./AddPetModal";
 import PetComponent from "./PetsComponents/PetComponent";
+import PreloaderComponent from "./PreloaderComponent";
 type Props = {
-  petList:PetModel[] | [],
-  categories:CategoryModel[] | []
+  petList: PetModel[] | [],
+  categories: CategoryModel[] | []
+  onPetsUpdate: () => void
 };
 
 const PetsPage = (props: Props) => {
 
+  const [showPreloader, setShowPreloader] = useState(false);
 
   return (
-    <div className="pt-2">
+    <div className="py-2">
       <h4 className="mb-3 text-success">
         <i className="material-icons">pets</i> Pets
       </h4>
@@ -41,7 +44,7 @@ const PetsPage = (props: Props) => {
           </Col>
         </Row>
       </div>
-      <div className="pets-container">
+      <div className="pets-container mb-3">
         {props.petList ? (
           <Row lg={3} xl={4} md={2} className="gy-3 mt-3">
             {props.petList.map((pet: PetModel, index) => (
@@ -52,14 +55,11 @@ const PetsPage = (props: Props) => {
             }
           </Row>
         ) : (
-          <div className="text-center">
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          </div>
+          <PreloaderComponent show={true} />
         )}
 
       </div>
+
     </div>
   );
 };

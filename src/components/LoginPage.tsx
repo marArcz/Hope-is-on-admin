@@ -49,7 +49,7 @@ const LoginPage = (props: Props) => {
                 <hr className="text-light" />
                 <div className="">
                   <div className="mb-4">
-                    <Form.Label className="fw-light">Username</Form.Label>
+                    <Form.Label className="fw-light">Email Address:</Form.Label>
                     <Form.Control
                       type="text"
                       required

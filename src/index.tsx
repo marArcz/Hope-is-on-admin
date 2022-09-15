@@ -9,6 +9,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://ghr-api.herokuapp.com/api/';
 
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

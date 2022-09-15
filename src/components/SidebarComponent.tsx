@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import LogoComponent from "./LogoComponent";
 import ProfilePic from "../images/profile_user.jpg";
 import { Link } from "react-router-dom";
-import { MenuItem } from "../Models/TypeModels";
+import { AdminModel, MenuItem } from "../Models/TypeModels";
 import DropdownMenuBtn from "./DropdownMenuBtn";
 import { Collapse } from "react-bootstrap";
 import MenuBtn from "./MenuBtn";
@@ -11,10 +11,11 @@ type Props = {
   sidebarMenus: MenuItem[];
   activeKey: string;
   onItemSelect: (key: string) => void;
+  admin:{} | AdminModel
 };
 
 
-const SidebarComponent = ({ sidebarMenus, activeKey, onItemSelect }: Props) => {
+const SidebarComponent = ({ sidebarMenus, activeKey, onItemSelect,admin }: Props) => {
   const [isPetExpanded, setIsPetExpanded] = useState(false)
 
   return (

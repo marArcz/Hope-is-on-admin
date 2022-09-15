@@ -10,19 +10,22 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import DashboardComponent from "./DashboardComponent";
 import PetsPage from "./PetsPage";
 import sidebarMenus from './SideBarMenuItems';
-import { CategoryModel, PetModel } from "../Models/TypeModels";
+import { AdminModel, CategoryModel, PetModel } from "../Models/TypeModels";
 import axios from 'axios';
 import AddPetPage from "./AddPetPage";
 import { ToastContainer, toast } from 'react-toastify';
 import BackendAPI from "../backendApi/BackendAPI";
 
-type Props = {};
+type Props = {
+  admin:{} | AdminModel
+};
 
-const HomePage = (props: Props) => {
+const HomePage = ({admin}: Props) => {
   const [activeKey, setActiveKey] = useState<string>("/success");
   const location = useLocation();
   const [categories, setCategories] = useState([])
-  const [petList, setPetList] = useState<any>([])
+  const [petList, setPetList] = useState<any>([]);
+  
   const loadCategories = (selected: undefined | string = undefined) => { 
     axios.get<Array<CategoryModel>>("/categories")
       .then((res: any) => {
@@ -32,11 +35,7 @@ const HomePage = (props: Props) => {
       })
   }
   const loadPets = async() => {
-    // axios.get<Array<PetModel>>("/pets")
-    //   .then((res: any) => {
-    //     setPetList(res.data);
-    //     console.log("pets: ", res.data)
-    //   })
+
     let pets = await BackendAPI.pets.getAll()
     setPetList(pets)
   }
@@ -51,6 +50,9 @@ const HomePage = (props: Props) => {
     setActiveKey(location.pathname)
   }, [location])
 
+  const onPetsUpdate = () =>{
+    loadPets();
+  }
 
   return (
     <>
@@ -59,15 +61,16 @@ const HomePage = (props: Props) => {
         onItemSelect={(key) => setActiveKey(key)}
         activeKey={activeKey}
         sidebarMenus={sidebarMenus}
+        admin={admin}
       />
-      <HeaderComponent />
+      <HeaderComponent admin={admin} />
 
       <main className="home full-h bg-light rounded-5">
         <Container className="h-100 mt-4 mb-3 ">
           <Routes>
             <Route path="/" element={<DashboardComponent />} />
-            <Route path="/pets" element={<PetsPage categories={categories} petList={petList} />} />
-            <Route path="/pets/add" element={<AddPetPage />} />
+            <Route path="/pets" element={<PetsPage categories={categories} onPetsUpdate={onPetsUpdate} petList={petList} />} />
+            <Route path="/pets/add" element={<AddPetPage onPetsUpdate={onPetsUpdate} />} />
           </Routes>
         </Container>
       </main>

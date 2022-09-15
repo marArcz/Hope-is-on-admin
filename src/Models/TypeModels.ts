@@ -33,3 +33,10 @@ export type VaccineModel = {
   name:string,
   category:CategoryModel,
 }
+
+export type AdminModel = {
+  id?:number,
+  name?:string,
+  email:string,
+  password:string
+}

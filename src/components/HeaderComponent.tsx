@@ -1,9 +1,12 @@
 import React from "react";
 import { Container, Form, Image, Nav, Navbar } from "react-bootstrap";
 import LogoImage from '../images/logo.png';
-type Props = {};
+import { AdminModel } from "../Models/TypeModels";
+type Props = {
+  admin:{} | AdminModel
+};
 
-const HeaderComponent = (props: Props) => {
+const HeaderComponent = ({admin}: Props) => {
   return (
     <Navbar
       fixed="top"
