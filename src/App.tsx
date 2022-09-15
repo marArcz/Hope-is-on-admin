@@ -49,7 +49,6 @@ function App() {
   return (
     <div className="App">
       <ToastContainer />
-
       <Routes>
         <Route path='/' element={<SignInPage onLogin={onLogin} />} />
         <Route path='/signup' element={<SignUpPage onSignUp={onSignUp} />} />
